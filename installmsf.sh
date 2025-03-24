@@ -12,8 +12,8 @@ display_banner() {
     local term_width=$(stty size | cut -d" " -f2)
 
     echo -e "${BLUE}" # Set text color to blue
-    figlet -c -w "$term_width" "Metasploit in Termux"
-    echo -e "${GREEN} Coded by: YourNameHere ${RESET}"
+    figlet -c -w "$term_width" "Metasploit"
+    echo -e "${GREEN} Coded by: HYDRA TERMUX ${RESET}"
 }
 
 # Function to center text with color
