@@ -86,14 +86,18 @@ Run pre-configured Metasploit scripts for automated attacks:
 ```bash
 bash metarun.sh --exploit android
 ```
-✅ **One-Click Payload Generator**
+## 📥One-Click Payload Generator
+
+![Metahack Screenshot](IMG/website.jpg)
+
 
 
 ---
 
 ## 📸 Screenshots  
 
-> _(Add screenshots of Metahack in action for a more impressive look!)_  
+![Metahack Screenshot](IMG/user_int.jpg)
+
 
 ---
 
