@@ -1,9 +1,10 @@
 #  Metahack - Advanced Metasploit Automation Tool  
-
-![GitHub Repo stars](https://img.shields.io/github/stars/HYDRA-TERMUX/Metahack?style=for-the-badge)  
-![GitHub forks](https://img.shields.io/github/forks/HYDRA-TERMUX/Metahack?style=for-the-badge)  
-![GitHub issues](https://img.shields.io/github/issues/HYDRA-TERMUX/Metahack?style=for-the-badge)  
-![GitHub license](https://img.shields.io/github/license/HYDRA-TERMUX/Metahack?style=for-the-badge)  
+<p align="center">
+  <img src="https://img.shields.io/github/stars/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub Repo stars">
+  <img src="https://img.shields.io/github/forks/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub forks">
+  <img src="https://img.shields.io/github/issues/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub issues">
+  <img src="https://img.shields.io/github/license/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub license">
+</p>
 
 🚀 **Metahack** is a **powerful penetration testing tool** that automates Metasploit in Termux. It helps ethical hackers and cybersecurity professionals **generate payloads, automate exploits, and manage sessions easily**. Whether you’re a beginner or an expert, Metahack simplifies Metasploit usage and boosts efficiency.  
 
