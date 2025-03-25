@@ -127,5 +127,6 @@ Want to improve Metahack? We welcome contributions!
 ---
 
 ### 🚀 **Turn your Android into a powerful hacking machine with Metahack!**  
-![Download Metahack](https://img.shields.io/badge/Download-Metahack-blue?style=for-the-badge&logo=githubhttps://github.com/HYDRA-TERMUX/Metahack/archive/refs/heads/main.zip)
+[![Download Metahack](https://img.shields.io/badge/Download-Metahack-blue?style=for-the-badge)](https://github.com/HYDRA-TERMUX/Metahack/archive/refs/heads/main.zip)
+
 
