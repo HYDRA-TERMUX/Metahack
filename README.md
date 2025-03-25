@@ -38,8 +38,8 @@ pkg update && pkg upgrade -y
 pkg install git python curl -y  
 git clone https://github.com/HYDRA-TERMUX/Metahack  
 cd Metahack  
-chmod +x metarun.sh  
-bash metarun.sh 
+chmod +x install.sh  
+bash install.sh 
 ```
 
 After installation, launch the tool with:  
@@ -90,8 +90,6 @@ bash metarun.sh --exploit android
 
 ![Metahack Screenshot](IMG/website.jpg)
 
-
-
 ---
 
 ## 📸 Screenshots  
@@ -122,12 +120,12 @@ Want to improve Metahack? We welcome contributions!
 
 ## 📬 Contact & Support  
 
-📩 **Developer:** [Your Contact Info]  
+📩 **Developer:** HYDRA TERMUX  
 🐞 **Report Bugs:** Open an [issue](https://github.com/HYDRA-TERMUX/Metahack/issues).  
 ⭐ **Like this project?** Give it a **star** on GitHub!  
 
 ---
 
 ### 🚀 **Turn your Android into a powerful hacking machine with Metahack!**  
+![Download Metahack](https://img.shields.io/badge/Download-Metahack-blue?style=for-the-badge&logo=githubhttps://github.com/HYDRA-TERMUX/Metahack/archive/refs/heads/main.zip)
 
-🔥 **[Download Now](https://github.com/HYDRA-TERMUX/Metahack)** 🔥  
