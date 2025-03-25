@@ -1,1 +1,8 @@
+name: Build and Publish Metahack APT Repo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual trigger
 
