@@ -1,8 +1,46 @@
 name: Build and Publish Metahack APT Repo
 
-on:on
+on:
   push:
     branches:
       - main
   workflow_dispatch:  # Allows manual trigger
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install required packages
+        run: |
+          sudo apt update
+          sudo apt install -y dpkg-dev
+
+      - name: Build Metahack .deb package
+        run: |
+          mkdir -p metahack/DEBIAN
+          echo "Package: metahack" > metahack/DEBIAN/control
+          echo "Version: 1.0" >> metahack/DEBIAN/control
+          echo "Architecture: all" >> metahack/DEBIAN/control
+          echo "Maintainer: HYDRA-TERMUX" >> metahack/DEBIAN/control
+          echo "Description: Metahack - Metasploit Automation Tool" >> metahack/DEBIAN/control
+          mkdir -p metahack/usr/bin
+          cp metahack.sh metahack/usr/bin/metahack
+          chmod +x metahack/usr/bin/metahack
+          dpkg-deb --build metahack metahack.deb
+
+      - name: Setup APT Repository
+        run: |
+          mkdir -p repo
+          mv metahack.deb repo/
+          cd repo
+          dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: repo
