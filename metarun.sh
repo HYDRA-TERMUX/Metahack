@@ -58,7 +58,7 @@ install_metasploit() {
 # Function to show guide
 show_guide() {
     echo -e "${YELLOW}[*] Opening guide...${RESET}"
-    termux-open-url https://hydra-termux.github.io/Metahack
+    termux-open-url https://hydra-termux.github.io/websites/
 }
 
 # Function to uninstall Metasploit
