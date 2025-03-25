@@ -1,6 +1,6 @@
 name: Build and Publish Metahack APT Repo
 
-on:
+on:on
   push:
     branches:
       - main
