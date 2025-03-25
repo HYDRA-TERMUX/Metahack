@@ -4,55 +4,44 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Ensures all files are fetched
 
-      - name: Install required packages
+      - name: Set up APT Repository
         run: |
-          sudo apt update
-          sudo apt install -y dpkg-dev
+          mkdir -p repo/debs
+          mkdir -p repo/conf
+          echo "Origin: Metahack" > repo/conf/distributions
+          echo "Label: Metahack Repo" >> repo/conf/distributions
+          echo "Suite: stable" >> repo/conf/distributions
+          echo "Codename: termux" >> repo/conf/distributions
+          echo "Version: 1.0" >> repo/conf/distributions
+          echo "Architectures: all" >> repo/conf/distributions
+          echo "Components: main" >> repo/conf/distributions
+          echo "Description: APT repo for Metahack" >> repo/conf/distributions
 
-      - name: Build Metahack .deb package
+      - name: Build Metahack .deb Package
         run: |
           mkdir -p metahack/DEBIAN
           echo "Package: metahack" > metahack/DEBIAN/control
           echo "Version: 1.0" >> metahack/DEBIAN/control
+          echo "Section: utilities" >> metahack/DEBIAN/control
+          echo "Priority: optional" >> metahack/DEBIAN/control
           echo "Architecture: all" >> metahack/DEBIAN/control
           echo "Maintainer: HYDRA-TERMUX" >> metahack/DEBIAN/control
-          echo "Description: Metahack - Metasploit Automation Tool" >> metahack/DEBIAN/control
-          
-          mkdir -p metahack/usr/bin
-          
-          # Check if metarun.sh exists before copying
-          if [ -f metarun.sh ]; then
-            cp metarun.sh metahack/usr/bin/metahack
-            chmod +x metahack/usr/bin/metahack
-          else
-            echo "Error: metarun.sh not found!" >&2
-            exit 1
-          fi
-          
-          dpkg-deb --build metahack metahack.deb
-
-      - name: Setup APT Repository
-        run: |
-          mkdir -p repo
-          mv metahack.deb repo/
-          cd repo
-          dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+          echo "Description: Advanced Metasploit Automation Tool" >> metahack/DEBIAN/control
+          chmod +x metarun.sh  # Ensure script is executable
+          cp metarun.sh metahack/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ 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 }}
+          personal_token: ${{ secrets.GH_PAT }}  # Use your Personal Access Token (PAT)
           publish_branch: gh-pages
           publish_dir: ./repo
