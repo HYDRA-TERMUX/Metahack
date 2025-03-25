@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensures all files are fetched
 
       - name: Install required packages
         run: |
@@ -27,9 +29,18 @@ jobs:
           echo "Architecture: all" >> metahack/DEBIAN/control
           echo "Maintainer: HYDRA-TERMUX" >> metahack/DEBIAN/control
           echo "Description: Metahack - Metasploit Automation Tool" >> metahack/DEBIAN/control
+          
           mkdir -p metahack/usr/bin
-          cp metahack.sh metahack/usr/bin/metahack
-          chmod +x metahack/usr/bin/metahack
+          
+          # Check if metarun.sh exists before copying
+          if [ -f metarun.sh ]; then
+            cp metarun.sh metahack/usr/bin/metahack
+            chmod +x metahack/usr/bin/metahack
+          else
+            echo "Error: metarun.sh not found!" >&2
+            exit 1
+          fi
+          
           dpkg-deb --build metahack metahack.deb
 
       - name: Setup APT Repository
