@@ -4,44 +4,43 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up APT Repository
-        run: |
-          mkdir -p repo/debs
-          mkdir -p repo/conf
-          echo "Origin: Metahack" > repo/conf/distributions
-          echo "Label: Metahack Repo" >> repo/conf/distributions
-          echo "Suite: stable" >> repo/conf/distributions
-          echo "Codename: termux" >> repo/conf/distributions
-          echo "Version: 1.0" >> repo/conf/distributions
-          echo "Architectures: all" >> repo/conf/distributions
-          echo "Components: main" >> repo/conf/distributions
-          echo "Description: APT repo for Metahack" >> repo/conf/distributions
-
-      - name: Build Metahack .deb Package
+      - name: Set up APT Repository Structure
         run: |
           mkdir -p metahack/DEBIAN
           echo "Package: metahack" > metahack/DEBIAN/control
           echo "Version: 1.0" >> metahack/DEBIAN/control
-          echo "Section: utilities" >> metahack/DEBIAN/control
-          echo "Priority: optional" >> metahack/DEBIAN/control
           echo "Architecture: all" >> metahack/DEBIAN/control
           echo "Maintainer: HYDRA-TERMUX" >> metahack/DEBIAN/control
-          echo "Description: Advanced Metasploit Automation Tool" >> metahack/DEBIAN/control
-          chmod +x metarun.sh  # Ensure script is executable
-          cp metarun.sh metahack/
+          echo "Description: Metahack - Advanced Metasploit Automation Tool" >> metahack/DEBIAN/control
+
+      - name: Copy Metahack Files
+        run: |
+          cp metarun.sh metahack/  # Ensure metarun.sh is in the repo root
+          chmod +x metahack/metarun.sh
+
+      - name: Build Debian Package
+        run: |
+          dpkg-deb --build metahack
+          mv metahack.deb metahack_1.0_all.deb  # Rename for APT compatibility
+
+      - name: Set Up Git User for Deployment
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GH_PAT }}  # Use your Personal Access Token (PAT)
+          personal_token: ${{ secrets.GH_PAT }}
           publish_branch: gh-pages
-          publish_dir: ./repo
+          publish_dir: ./
