@@ -51,7 +51,8 @@ jobs:
           dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: repo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./repo
