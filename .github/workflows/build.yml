@@ -11,36 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up APT Repository Structure
+      - name: 🔧 Set Up APT Repo Directory
         run: |
-          mkdir -p metahack/DEBIAN
-          echo "Package: metahack" > metahack/DEBIAN/control
-          echo "Version: 1.0" >> metahack/DEBIAN/control
-          echo "Architecture: all" >> metahack/DEBIAN/control
-          echo "Maintainer: HYDRA-TERMUX" >> metahack/DEBIAN/control
-          echo "Description: Metahack - Advanced Metasploit Automation Tool" >> metahack/DEBIAN/control
-
-      - name: Copy Metahack Files
+          mkdir -p repo/DEBIAN
+          echo "Package: metahack" > repo/DEBIAN/control
+          echo "Version: 1.0" >> repo/DEBIAN/control
+          echo "Architecture: all" >> repo/DEBIAN/control
+          echo "Maintainer: HYDRA-TERMUX" >> repo/DEBIAN/control
+          echo "Description: Metahack APT package" >> repo/DEBIAN/control
+          
+      - name: 📦 Build .deb Package
         run: |
-          cp metarun.sh metahack/  # Ensure metarun.sh is in the repo root
-          chmod +x metahack/metarun.sh
+          dpkg-deb --build repo metahack.deb
+          mkdir -p public
+          mv metahack.deb public/
 
-      - name: Build Debian Package
-        run: |
-          dpkg-deb --build metahack
-          mv metahack.deb metahack_1.0_all.deb  # Rename for APT compatibility
-
-      - name: Set Up Git User for Deployment
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}
           publish_branch: gh-pages
-          publish_dir: ./
+          publish_dir: ./public
