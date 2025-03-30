@@ -72,12 +72,20 @@ uninstall_metasploit() {
 # Function to update Metasploit
 update_metasploit() {
     echo -e "${YELLOW}[*] Updating Metasploit...${RESET}"
-    cd $PREFIX/opt/metasploit-framework || { echo -e "${RED}[✖] Metasploit not installed.${RESET}"; return; }
-    git pull
-    bundle install
-    echo -e "${GREEN}[✔] Metasploit updated successfully.${RESET}"
-}
+    cd $HOME
+    # Remove existing Metahack directory
+    if [ -d "Metahack" ]; then
+        rm -rf Metahack
+        echo -e "${RED}Old version removed.${RESET}"
+    fi
 
+    # Clone fresh version from GitHub
+    git clone https://github.com/HYDRA-TERMUX/Metahack.git
+    cd Metahack
+    chmod +x *  # Ensure all scripts are executable 
+    echo -e"${GREEN}[✔]Metahack has been reinstalled successfully!${RESET}"
+    bash install.sh
+}
 # Function to show "About Me"
 about_me() {
     echo -e "${YELLOW}[*] Opening About Me page...${RESET}"
