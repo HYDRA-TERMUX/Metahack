@@ -83,7 +83,7 @@ update_metasploit() {
     git clone https://github.com/HYDRA-TERMUX/Metahack.git
     cd Metahack
     chmod +x *  # Ensure all scripts are executable 
-    echo -e"${GREEN}[✔]Metahack has been reinstalled successfully!${RESET}"
+    echo -e"${GREEN}[✔]Metahack has been reinstalled successfully!.${RESET}"
     bash install.sh
 }
 # Function to show "About Me"
