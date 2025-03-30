@@ -44,6 +44,7 @@ sleep 9
 # Grant execute permissions for installmsf.sh & metarun.sh
 echo -e "${GREEN}✅ Granting execute permissions...${RESET}"
 chmod +x installmsf.sh metarun.sh
+pkg install figlet -y
 
 # Run Metarun script
 echo -e "${YELLOW}🚀 Running Metarun...${RESET}"
