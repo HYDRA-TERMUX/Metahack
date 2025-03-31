@@ -127,6 +127,10 @@ Want to improve Metahack? We welcome contributions!
 
 ---
 
+<p align="center">
+  <img src="https://profile-counter.glitch.me/HYDRA-TERMUX/count.svg" />
+</p>
+
 ### 🚀 **Turn your Android into a powerful hacking machine with Metahack!**  
 [![Download Metahack](https://img.shields.io/badge/Download-Metahack-blue?style=for-the-badge)](https://github.com/HYDRA-TERMUX/Metahack/archive/refs/heads/main.zip)
 
