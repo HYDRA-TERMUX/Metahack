@@ -24,7 +24,11 @@ sleep 1
 if ! command -v xdg-open &> /dev/null && ! command -v termux-open-url &> /dev/null; then
     echo -e "${RED}❌ Missing required tools! Installing...${RESET}"
     apt update -y
-    apt install xdg-utils -y || apt install termux-tools -y
+    pkg install figlet -y
+    pkg install git python curl -y
+    pkg intall php -y
+    pkg install openssh -y
+    pkg install wget -y
     echo -e "${GREEN}✅ Tools installed successfully!${RESET}"
 else
     echo -e "${GREEN}✅ All required tools are installed!${RESET}"
@@ -44,7 +48,6 @@ sleep 9
 # Grant execute permissions for installmsf.sh & metarun.sh
 echo -e "${GREEN}✅ Granting execute permissions...${RESET}"
 chmod +x installmsf.sh metarun.sh
-pkg install figlet -y
 
 # Run Metarun script
 echo -e "${YELLOW}🚀 Running Metarun...${RESET}"
