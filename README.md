@@ -1,4 +1,4 @@
-#  Metahack - Advanced Metasploit Automation Tool  
+#  Metahack - Advanced Metasploit Automation Tool 
 <p align="center">
   <img src="https://img.shields.io/github/stars/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub Repo stars">
   <img src="https://img.shields.io/github/forks/HYDRA-TERMUX/Metahack?style=for-the-badge" alt="GitHub forks">
@@ -127,9 +127,6 @@ Want to improve Metahack? We welcome contributions!
 
 ---
 
-<p align="center">
-  <img src="https://profile-counter.glitch.me/HYDRA-TERMUX/count.svg" />
-</p>
 
 ### 🚀 **Turn your Android into a powerful hacking machine with Metahack!**  
 [![Download Metahack](https://img.shields.io/badge/Download-Metahack-blue?style=for-the-badge)](https://github.com/HYDRA-TERMUX/Metahack/archive/refs/heads/main.zip)
